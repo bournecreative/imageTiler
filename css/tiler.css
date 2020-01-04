@@ -1,0 +1,136 @@
+:focus {
+    outline: black dashed 1px;
+    outline-offset: 2px;
+}
+
+body,
+html {
+    margin: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.ir-container {
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+.ir-entry>label,
+button {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.ir-container textarea {
+    width: 40%;
+    height: 300px;
+}
+
+.ir-container button {
+    background-color: #1c83d6;
+    color: #ffffff;
+    width: 120px;
+    height: 40px;
+    border: none;
+    margin-top: 16px;
+}
+
+.ir-container button:hover {
+    background-color: #12E3D2;
+    color: #ffffff;
+}
+
+.ir-container button.close {
+    position: fixed;
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    top: 0px;
+    right: 0px;
+    margin: 0;
+    transition: 0.7;
+}
+
+.ir-container button.close:hover {
+    background-color: #12E3D2;
+    color: #ffffff;
+}
+
+.ir-list-container {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.ir-list {
+    font-size: 12px;
+    list-style-type: none;
+    padding: 10px 0;
+}
+
+.ir-list-item {
+    display: flex;
+    padding: 4px 0;
+}
+
+.ir-list-item input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.ir-list-item input[type="input"] {
+    width: 500px;
+}
+
+.ir-tile-container {
+    width: 70%;
+    box-sizing: border-box;
+}
+
+.photo-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 0 10px;
+    grid-auto-rows: 10px;
+}
+
+.photo-wrapper img {
+    width: 250px;
+}
+
+.photoGroup {
+    opacity: .5;
+    transition: ease 0.7s;
+}
+
+.photoGroup:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 1450px) {
+    .ir-list-container {
+        width: 40%;
+    }
+
+    .ir-tile-container {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        padding: 0 16px;
+    }
+}
