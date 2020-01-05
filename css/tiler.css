@@ -70,6 +70,19 @@ button {
     display: block;
     margin-bottom: 16px;
 }
+.t-input-container > label{
+    max-width: 600px;
+    transition:all 1s ease;
+    background: linear-gradient(to right, #ee7575 50%, #ffffff 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+    padding: 7px 0;
+}
+
+label.t-error{
+    background-position:left bottom;
+    color: #971a03;
+}
 
 .t-list-container {
     position: fixed;

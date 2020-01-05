@@ -5,14 +5,21 @@
     }
 
     var broker = {
-        initData: function (data) {
+        cleanData: function (data) {
+            var cleanInput = []
             var payload = data.split("\n");
             payload.map(function (str, id) {
                 const clean = str.replace(/\s+/g, '');
                 const re = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\) \*\+,;=.]+$/);
                 if (clean.match(re)) {
-                    model.images.push({ id: id, img: clean })
+                    cleanInput.push({ id: id, img: clean })
                 }
+            })
+            broker.initData(cleanInput)
+        },
+        initData: function (data) {
+            data.map(function (obj) {
+                model.images.push(obj)
             })
         },
         retreiveData: function () {
@@ -26,9 +33,9 @@
             this.pageContainer = document.createElement('div');
             this.inputContainer = document.createElement('div');
             this.urlInput = document.createElement('textarea');
+            this.label = document.createElement('label');
             var appTitle = document.createElement('h1'),
                 appPurpose = document.createElement('p'),
-                label = document.createElement('label'),
                 entryBtn = document.createElement('button'),
                 closeBtn = document.createElement('button');
             // class and attribute assignment
@@ -39,11 +46,16 @@
             appTitle.textContent = "Image Tiler";
             appPurpose.classList.add('t-purpose-desc');
             appPurpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
-            label.setAttribute('for', 's7-urls');
-            label.textContent = "Paste image URLs below";
+            this.label.setAttribute('for', 's7-urls');
+            this.label.textContent = "Paste image URLs below";
             entryBtn.classList.add('btn-submit');
             entryBtn.textContent = "review imagery";
             entryBtn.addEventListener('click', function () {
+                broker.cleanData(entryView.urlInput.value);
+                if (broker.retreiveData().length < 1) {
+                    entryView.entryError();
+                    return
+                }
                 listView.init();
                 listView.render();
                 imageTileView.init();
@@ -57,9 +69,13 @@
             this.pageContainer.appendChild(closeBtn);
             this.inputContainer.appendChild(appTitle);
             this.inputContainer.appendChild(appPurpose);
-            this.inputContainer.appendChild(label);
+            this.inputContainer.appendChild(this.label);
             this.inputContainer.appendChild(this.urlInput);
             this.inputContainer.appendChild(entryBtn);
+        },
+        entryError: function () {
+            this.label.textContent = " Input entered rendered No valid image URLS!"
+            this.label.classList.add('t-error')
         },
         remove: function () {
             // entryView.inputContainer.classList.add('hide');
@@ -85,11 +101,9 @@
             entryView.pageContainer.appendChild(listContainer);
             listContainer.appendChild(listInstruction);
             listContainer.appendChild(this.urlList);
-            broker.initData(entryView.urlInput.value);
         },
         render: function () {
             const data = broker.retreiveData();
-            if (!data) return
             entryView.remove();
             data.map(function (img) {
                 // creation of view elements
