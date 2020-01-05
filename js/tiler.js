@@ -43,7 +43,7 @@
                 imageTile.init();
             });
             closeBtn.classList.add('close');
-            closeBtn.textContent = "X";
+            closeBtn.textContent = "Close";
             closeBtn.addEventListener('click', entryView.closeWindow)
             //
             document.querySelector('body').appendChild(this.container);
