@@ -91,15 +91,18 @@
             // creation of view elements
             var listContainer = document.createElement('div');
             var listInstruction = document.createElement('p');
+            var urlCount = document.createElement('p');
             this.urlList = document.createElement('ul');
             // class assignment assignment
             listContainer.classList.add('t-list-container');
             listInstruction.classList.add('t-list-inst');
             listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span> <span class="three">- See a typo that needs correction, update the value of the url string and select the 'Update Images' button.</span><span class="four">- Select an image tile to view a larger version of the imagery</span> `;
+            urlCount.textContent = "Returned " + broker.retreiveData().length + " Images";
             this.urlList.classList.add('t-list');
             // Append elements to the DOM
             entryView.pageContainer.appendChild(listContainer);
             listContainer.appendChild(listInstruction);
+            listContainer.appendChild(urlCount);
             listContainer.appendChild(this.urlList);
         },
         render: function () {

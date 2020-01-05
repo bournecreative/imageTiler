@@ -70,6 +70,7 @@ button {
     display: block;
     margin-bottom: 16px;
 }
+
 .t-input-container > label{
     max-width: 600px;
     transition:all 1s ease;
