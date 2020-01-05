@@ -23,22 +23,22 @@
     var entryView = {
         init: function () {
             // creation of view elements
-            this.container = document.createElement('div');
-            this.entryContainer = document.createElement('div');
-            this.textInput = document.createElement('textarea');
+            this.pageContainer = document.createElement('div');
+            this.inputContainer = document.createElement('div');
+            this.urlInput = document.createElement('textarea');
             var appTitle = document.createElement('h1'),
-                purpose = document.createElement('p'),
+                appPurpose = document.createElement('p'),
                 label = document.createElement('label'),
                 entryBtn = document.createElement('button'),
                 closeBtn = document.createElement('button');
             // class and attribute assignment
-            this.container.classList.add('ir-container');
-            this.entryContainer.classList.add('ir-entry');
-            this.textInput.setAttribute('id', 's7-urls');
+            this.pageContainer.classList.add('t-container');
+            this.inputContainer.classList.add('t-input-container');
+            this.urlInput.setAttribute('id', 's7-urls');
             appTitle.classList.add('t-app-title')
             appTitle.textContent = "Image Tiler";
-            purpose.classList.add('t-purpose-desc');
-            purpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
+            appPurpose.classList.add('t-purpose-desc');
+            appPurpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
             label.setAttribute('for', 's7-urls');
             label.textContent = "Paste image URLs below";
             entryBtn.classList.add('btn-submit');
@@ -46,27 +46,27 @@
             entryBtn.addEventListener('click', function () {
                 listView.init();
                 listView.render();
-                imageTile.init();
+                imageTileView.init();
             });
             closeBtn.classList.add('close');
             closeBtn.textContent = "Close";
             closeBtn.addEventListener('click', entryView.closeWindow)
             // Append elements to the DOM
-            document.querySelector('body').appendChild(this.container);
-            this.container.appendChild(this.entryContainer);
-            this.container.appendChild(closeBtn);
-            this.entryContainer.appendChild(appTitle);
-            this.entryContainer.appendChild(purpose);
-            this.entryContainer.appendChild(label);
-            this.entryContainer.appendChild(this.textInput);
-            this.entryContainer.appendChild(entryBtn);
+            document.querySelector('body').appendChild(this.pageContainer);
+            this.pageContainer.appendChild(this.inputContainer);
+            this.pageContainer.appendChild(closeBtn);
+            this.inputContainer.appendChild(appTitle);
+            this.inputContainer.appendChild(appPurpose);
+            this.inputContainer.appendChild(label);
+            this.inputContainer.appendChild(this.urlInput);
+            this.inputContainer.appendChild(entryBtn);
         },
         remove: function () {
-            // entryView.entryContainer.classList.add('hide');
-            entryView.entryContainer.remove();
+            // entryView.inputContainer.classList.add('hide');
+            entryView.inputContainer.remove();
         },
         closeWindow: function () {
-            entryView.container.remove();
+            entryView.pageContainer.remove();
         }
     }
 
@@ -76,12 +76,12 @@
             var listContainer = document.createElement('div');
             this.urlList = document.createElement('ul');
             // class assignment assignment
-            listContainer.classList.add('ir-list-container');
-            this.urlList.classList.add('ir-list');
+            listContainer.classList.add('t-list-container');
+            this.urlList.classList.add('t-list');
             // Append elements to the DOM
-            entryView.container.appendChild(listContainer);
+            entryView.pageContainer.appendChild(listContainer);
             listContainer.appendChild(this.urlList)
-            broker.initData(entryView.textInput.value)
+            broker.initData(entryView.urlInput.value)
         },
         render: function () {
             const data = broker.retreiveData();
@@ -90,17 +90,17 @@
             data.map(function (img) {
                 // creation of view elements
                 var listItem = document.createElement('li');
-                var item = document.createElement('input');
-                var itemTitle = document.createElement('input');
+                var listItemCheck = document.createElement('input');
+                var listItemURL = document.createElement('input');
                 // class and attribute assignment
-                listItem.classList.add('ir-list-item');
-                item.setAttribute('type', 'checkbox')
-                itemTitle.setAttribute('type', 'input');
-                itemTitle.value = img.img.toString();
+                listItem.classList.add('t-list-item');
+                listItemCheck.setAttribute('type', 'checkbox')
+                listItemURL.setAttribute('type', 'input');
+                listItemURL.value = img.img.toString();
                 // List Item Append elements to the DOM
                 listView.urlList.appendChild(listItem);
-                listItem.appendChild(item);
-                listItem.appendChild(itemTitle);
+                listItem.appendChild(listItemCheck);
+                listItem.appendChild(listItemURL);
             })
             // creation of view elements
             var updateBtn = document.createElement('button');
@@ -112,33 +112,33 @@
         }
     }
 
-    var imageTile = {
+    var imageTileView = {
         init: function () {
             // creation of view elements
             var tileContainer = document.createElement('div');
-            var imageContainer = document.createElement('div');
+            var tileGrid = document.createElement('div');
             // class and attribute assignment
-            tileContainer.classList.add('ir-tile-container');
-            imageContainer.classList.add('photo-wrapper')
+            tileContainer.classList.add('t-tile-container');
+            tileGrid.classList.add('t-grid')
             // Append elements to the DOM
-            entryView.container.appendChild(tileContainer);
-            tileContainer.appendChild(imageContainer)
+            entryView.pageContainer.appendChild(tileContainer);
+            tileContainer.appendChild(tileGrid)
             const data = broker.retreiveData();
             data.map(function (item) {
                 // creation of view elements
                 var tile = document.createElement('div');
-                var itemImg = document.createElement('img')
+                var tileImg = document.createElement('img')
                 // class and attribute assignment
-                tile.classList.add('photoGroup')
-                itemImg.setAttribute('src', item.img)
-                itemImg.addEventListener('load', function () {
+                tile.classList.add('t-tile')
+                tileImg.setAttribute('src', item.img)
+                tileImg.addEventListener('load', function () {
                     const imageHeight = this.clientHeight;
                     const spans = Math.ceil(imageHeight / 10 + 1)
                     this.parentNode.style.gridRowEnd = "span " + spans;
                 })
                 // Append elements to the DOM
-                imageContainer.appendChild(tile)
-                tile.appendChild(itemImg)
+                tileGrid.appendChild(tile)
+                tile.appendChild(tileImg)
             })
         }
     }
