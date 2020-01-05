@@ -6,9 +6,9 @@
 
     var broker = {
         initData: function (data) {
-            var payload = data.split("\n")
+            var payload = data.split("\n");
             payload.map(function (str, id) {
-                const clean = str.replace(/\s+/g, '')
+                const clean = str.replace(/\s+/g, '');
                 const re = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\) \*\+,;=.]+$/);
                 if (clean.match(re)) {
                     model.images.push({ id: id, img: clean })
@@ -72,11 +72,13 @@
 
     var listView = {
         init: function () {
-            console.log("init is running")
+            // creation of view elements
             var listContainer = document.createElement('div');
-            listContainer.classList.add('ir-list-container');
             this.urlList = document.createElement('ul');
+            // class assignment assignment
+            listContainer.classList.add('ir-list-container');
             this.urlList.classList.add('ir-list');
+            // Append elements to the DOM
             entryView.container.appendChild(listContainer);
             listContainer.appendChild(this.urlList)
             broker.initData(entryView.textInput.value)
@@ -86,48 +88,56 @@
             if (!data) return
             entryView.remove();
             data.map(function (img) {
+                // creation of view elements
                 var listItem = document.createElement('li');
-                listItem.classList.add('ir-list-item');
                 var item = document.createElement('input');
-                item.setAttribute('type', 'checkbox')
                 var itemTitle = document.createElement('input');
+                // class and attribute assignment
+                listItem.classList.add('ir-list-item');
+                item.setAttribute('type', 'checkbox')
                 itemTitle.setAttribute('type', 'input');
                 itemTitle.value = img.img.toString();
+                // List Item Append elements to the DOM
                 listView.urlList.appendChild(listItem);
                 listItem.appendChild(item);
                 listItem.appendChild(itemTitle);
             })
+            // creation of view elements
             var updateBtn = document.createElement('button');
+            // class and attribute assignment
             updateBtn.classList.add('update-list');
             updateBtn.textContent = "Update Imgs";
+            // Append elements to the DOM
             listView.urlList.appendChild(updateBtn);
         }
     }
 
     var imageTile = {
         init: function () {
-            // image tile creation
+            // creation of view elements
             var tileContainer = document.createElement('div');
             var imageContainer = document.createElement('div');
+            // class and attribute assignment
             tileContainer.classList.add('ir-tile-container');
             imageContainer.classList.add('photo-wrapper')
-
+            // Append elements to the DOM
             entryView.container.appendChild(tileContainer);
             tileContainer.appendChild(imageContainer)
-
             const data = broker.retreiveData();
-
             data.map(function (item) {
+                // creation of view elements
                 var tile = document.createElement('div');
-                tile.classList.add('photoGroup')
-                imageContainer.appendChild(tile)
                 var itemImg = document.createElement('img')
+                // class and attribute assignment
+                tile.classList.add('photoGroup')
                 itemImg.setAttribute('src', item.img)
                 itemImg.addEventListener('load', function () {
                     const imageHeight = this.clientHeight;
                     const spans = Math.ceil(imageHeight / 10 + 1)
                     this.parentNode.style.gridRowEnd = "span " + spans;
                 })
+                // Append elements to the DOM
+                imageContainer.appendChild(tile)
                 tile.appendChild(itemImg)
             })
         }
