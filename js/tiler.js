@@ -22,19 +22,25 @@
 
     var entryView = {
         init: function () {
-            // entry element creation
+            // creation of view elements
             this.container = document.createElement('div');
-            this.entryContainer = document.createElement('div'),
-                this.textInput = document.createElement('textarea');
-            var label = document.createElement('label'),
+            this.entryContainer = document.createElement('div');
+            this.textInput = document.createElement('textarea');
+            var appTitle = document.createElement('h1'),
+                purpose = document.createElement('p'),
+                label = document.createElement('label'),
                 entryBtn = document.createElement('button'),
                 closeBtn = document.createElement('button');
-            //
+            // class and attribute assignment
             this.container.classList.add('ir-container');
             this.entryContainer.classList.add('ir-entry');
             this.textInput.setAttribute('id', 's7-urls');
+            appTitle.classList.add('t-app-title')
+            appTitle.textContent = "Image Tiler";
+            purpose.classList.add('t-purpose-desc');
+            purpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
             label.setAttribute('for', 's7-urls');
-            label.textContent = "Save Time 🕑 Quickly Review Artwork 🎨! Enter S7 URLs 🎉";
+            label.textContent = "Paste image URLs below";
             entryBtn.classList.add('btn-submit');
             entryBtn.textContent = "review imagery";
             entryBtn.addEventListener('click', function () {
@@ -45,10 +51,12 @@
             closeBtn.classList.add('close');
             closeBtn.textContent = "Close";
             closeBtn.addEventListener('click', entryView.closeWindow)
-            //
+            // Append elements to the DOM
             document.querySelector('body').appendChild(this.container);
             this.container.appendChild(this.entryContainer);
             this.container.appendChild(closeBtn);
+            this.entryContainer.appendChild(appTitle);
+            this.entryContainer.appendChild(purpose);
             this.entryContainer.appendChild(label);
             this.entryContainer.appendChild(this.textInput);
             this.entryContainer.appendChild(entryBtn);

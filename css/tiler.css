@@ -53,10 +53,10 @@ button {
     background-color: #1c83d6;;
     font-size: 20px;
     font-weight: bold;
-    width: 120px;
+    width: 100px;
     height: 40px;
     top: 5px;
-    right: -80px;
+    right: -65px;
     margin: 0;
     transition: right 1s;
     text-align: left;
