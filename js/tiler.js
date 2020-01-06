@@ -12,18 +12,29 @@
                 const clean = str.replace(/\s+/g, '');
                 const re = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\) \*\+,;=.]+$/);
                 if (clean.match(re)) {
-                    cleanInput.push({ id: id, img: clean })
+                    cleanInput.push({ img: clean })
                 }
             })
             broker.initData(cleanInput)
         },
         initData: function (data) {
-            data.map(function (obj) {
+            data.map(function (obj, id) {
+                obj.id = id
+                obj.visible = true
                 model.images.push(obj)
             })
         },
         retreiveData: function () {
             return model.images;
+        },
+        updateVisibility(target) {
+            targetData = model.images[target];
+            if (targetData.visible === true) {
+                targetData.visible = false
+            } else {
+                targetData.visible = true
+            }
+            imageTileView.render(target)
         },
         clearData: function () {
             model.images = [];
@@ -124,7 +135,13 @@
                 var listItemURL = document.createElement('input');
                 // class and attribute assignment
                 listItem.classList.add('t-list-item');
-                listItemCheck.setAttribute('type', 'checkbox')
+                listItem.setAttribute('data-id', img.id)
+                listItemCheck.setAttribute('type', 'checkbox');
+                listItemCheck.addEventListener('click', function () {
+                    const parent = this.parentNode;
+                    const selected = parent.getAttribute('data-id');
+                    broker.updateVisibility(selected)
+                })
                 listItemURL.setAttribute('type', 'input');
                 listItemURL.value = img.img.toString();
                 // List Item Append elements to the DOM
@@ -162,19 +179,24 @@
             data.map(function (item) {
                 // creation of view elements
                 var tile = document.createElement('div');
-                var tileImg = document.createElement('img')
+                var tileImg = document.createElement('img');
                 // class and attribute assignment
-                tile.classList.add('t-tile')
-                tileImg.setAttribute('src', item.img)
+                tile.classList.add('t-tile');
+                tile.setAttribute('data-id', item.id);
+                tileImg.setAttribute('src', item.img);
                 tileImg.addEventListener('load', function () {
                     const imageHeight = this.clientHeight;
-                    const spans = Math.ceil(imageHeight / 10 + 1)
+                    const spans = Math.ceil(imageHeight / 10 + 1);
                     this.parentNode.style.gridRowEnd = "span " + spans;
                 })
                 // Append elements to the DOM
                 tileGrid.appendChild(tile)
                 tile.appendChild(tileImg)
             })
+        },
+        render: function (target) {
+            const targetTile = document.querySelector('.t-tile[data-id="' + target + '"]')
+            targetTile.classList.toggle('t-hide');
         }
     }
     entryView.init();

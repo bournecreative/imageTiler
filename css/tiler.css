@@ -3,10 +3,6 @@ html {
     margin: 0;
 }
 
-.hide {
-    display: none;
-}
-
 .t-container {
     margin-top: 50px;
     padding: 0 20px;
@@ -177,6 +173,12 @@ label.t-error{
 .t-tile {
     opacity: .5;
     transition: ease 0.7s;
+}
+
+.t-tile.t-hide {
+    /* display: none; */
+    opacity: 0;
+    /* visibility: hidden; */
 }
 
 .t-tile:hover {
