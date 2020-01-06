@@ -96,6 +96,7 @@
             entryView.inputContainer.remove();
         },
         reset: function () {
+            entryView.pageContainer.remove();
             listView.listContainer.remove();
             imageTileView.tileContainer.remove();
             broker.clearData();
@@ -137,11 +138,12 @@
                 listItem.classList.add('t-list-item');
                 listItem.setAttribute('data-id', img.id)
                 listItemCheck.setAttribute('type', 'checkbox');
-                listItemCheck.addEventListener('click', function () {
-                    const parent = this.parentNode;
-                    const selected = parent.getAttribute('data-id');
-                    broker.updateVisibility(selected)
-                })
+                listItemCheck.addEventListener('click', function (imgCopy) {
+                    return function () {
+                        console.log(imgCopy)
+                        broker.updateVisibility(imgCopy.id)
+                    }
+                }(img))
                 listItemURL.setAttribute('type', 'input');
                 listItemURL.value = img.img.toString();
                 // List Item Append elements to the DOM
