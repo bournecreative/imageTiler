@@ -150,6 +150,14 @@ label.t-error{
     width: 500px;
 }
 
+.t-list button:first-of-type{
+    margin-right: 16px;
+}
+
+.t-list-container button{
+    display: inline-block;
+}
+
 .t-tile-container {
     width: 70%;
     box-sizing: border-box;

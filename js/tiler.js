@@ -24,6 +24,9 @@
         },
         retreiveData: function () {
             return model.images;
+        },
+        clearData: function () {
+            model.images = [];
         }
     }
 
@@ -81,6 +84,12 @@
             // entryView.inputContainer.classList.add('hide');
             entryView.inputContainer.remove();
         },
+        reset: function () {
+            listView.listContainer.remove();
+            imageTileView.tileContainer.remove();
+            broker.clearData();
+            entryView.init();
+        },
         closeWindow: function () {
             entryView.pageContainer.remove();
         }
@@ -89,21 +98,21 @@
     var listView = {
         init: function () {
             // creation of view elements
-            var listContainer = document.createElement('div');
+            this.listContainer = document.createElement('div');
             var listInstruction = document.createElement('p');
             var urlCount = document.createElement('p');
             this.urlList = document.createElement('ul');
             // class assignment assignment
-            listContainer.classList.add('t-list-container');
+            this.listContainer.classList.add('t-list-container');
             listInstruction.classList.add('t-list-inst');
             listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span> <span class="three">- See a typo that needs correction, update the value of the url string and select the 'Update Images' button.</span><span class="four">- Select an image tile to view a larger version of the imagery</span> `;
             urlCount.textContent = "Returned " + broker.retreiveData().length + " Images";
             this.urlList.classList.add('t-list');
             // Append elements to the DOM
-            entryView.pageContainer.appendChild(listContainer);
-            listContainer.appendChild(listInstruction);
-            listContainer.appendChild(urlCount);
-            listContainer.appendChild(this.urlList);
+            entryView.pageContainer.appendChild(this.listContainer);
+            this.listContainer.appendChild(listInstruction);
+            this.listContainer.appendChild(urlCount);
+            this.listContainer.appendChild(this.urlList);
         },
         render: function () {
             const data = broker.retreiveData();
@@ -125,25 +134,30 @@
             })
             // creation of view elements
             var updateBtn = document.createElement('button');
+            var resetBtn = document.createElement('button');
             // class and attribute assignment
             updateBtn.classList.add('update-list');
             updateBtn.textContent = "Update Imgs";
+            resetBtn.classList.add('t-reset');
+            resetBtn.textContent = "reset";
+            resetBtn.addEventListener('click', entryView.reset);
             // Append elements to the DOM
             listView.urlList.appendChild(updateBtn);
+            listView.urlList.appendChild(resetBtn);
         }
     }
 
     var imageTileView = {
         init: function () {
             // creation of view elements
-            var tileContainer = document.createElement('div');
+            this.tileContainer = document.createElement('div');
             var tileGrid = document.createElement('div');
             // class and attribute assignment
-            tileContainer.classList.add('t-tile-container');
+            this.tileContainer.classList.add('t-tile-container');
             tileGrid.classList.add('t-grid')
             // Append elements to the DOM
-            entryView.pageContainer.appendChild(tileContainer);
-            tileContainer.appendChild(tileGrid)
+            entryView.pageContainer.appendChild(this.tileContainer);
+            this.tileContainer.appendChild(tileGrid)
             const data = broker.retreiveData();
             data.map(function (item) {
                 // creation of view elements
