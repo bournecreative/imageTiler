@@ -19,9 +19,9 @@
         },
         initData: function (data) {
             data.map(function (obj, id) {
-                obj.id = id
-                obj.visible = true
-                model.images.push(obj)
+                obj.id = id;
+                obj.visible = true;
+                model.images.push(obj);
             })
         },
         retreiveData: function () {
@@ -73,6 +73,7 @@
                 listView.init();
                 listView.render();
                 imageTileView.init();
+                modalView.initModal();
             });
             closeBtn.classList.add('close');
             closeBtn.textContent = "Close";
@@ -140,7 +141,6 @@
                 listItemCheck.setAttribute('type', 'checkbox');
                 listItemCheck.addEventListener('click', function (imgCopy) {
                     return function () {
-                        console.log(imgCopy)
                         broker.updateVisibility(imgCopy.id)
                     }
                 }(img))
@@ -191,6 +191,7 @@
                     const spans = Math.ceil(imageHeight / 10 + 1);
                     this.parentNode.style.gridRowEnd = "span " + spans;
                 })
+                tileImg.addEventListener('click', modalView.renderModal)
                 // Append elements to the DOM
                 tileGrid.appendChild(tile)
                 tile.appendChild(tileImg)
@@ -199,6 +200,35 @@
         render: function (target) {
             const targetTile = document.querySelector('.t-tile[data-id="' + target + '"]')
             targetTile.classList.toggle('t-hide');
+        }
+    }
+    var modalView = {
+        initModal: function () {
+            // creation of view elements
+            this.body = document.querySelector('body');
+            this.modalShade = document.createElement('div');
+            this.modalImage = document.createElement('img')
+            const modalClose = document.createElement('button');
+            // class and attribute assignment
+            this.modalShade.classList.add('t-modal-shade');
+            this.modalShade.addEventListener('click', modalView.closeModal)
+            modalClose.classList.add('t-modal-close');
+            modalClose.textContent = "X"
+            modalClose.addEventListener('click', modalView.closeModal)
+            this.modalImage.classList.add('t-modal-image');
+            // Append elements to the DOM
+            this.body.appendChild(this.modalShade);
+            this.modalShade.appendChild(modalClose);
+            this.modalShade.appendChild(this.modalImage);
+        },
+        renderModal: function () {
+            const setImage = this.getAttribute('src')
+            modalView.body.classList.add('modalOpen');
+            modalView.modalImage.setAttribute('src', setImage)
+            console.log(modalView.modalImage.clientHeight)
+        },
+        closeModal: function () {
+            modalView.body.classList.remove('modalOpen');
         }
     }
     entryView.init();
