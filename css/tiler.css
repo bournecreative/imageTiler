@@ -8,7 +8,7 @@ html {
     padding: 0 20px;
     width: 100%;
     height: 100%;
-    z-index: 50;
+    z-index: 20;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
@@ -43,14 +43,14 @@ html {
     position: fixed;
     background-color: #27290B;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 30px;
     top: 5px;
-    right: -65px;
+    left: -65px;
     margin: 0;
-    transition: right 1s;
+    transition: left 1s;
     text-align: left;
     padding-left: 20px;
 }
@@ -58,7 +58,7 @@ html {
 .t-container button.close:hover {
     background-color: #e4f042;
     color: #27290B;
-    right: 0px;
+    left: 0px;
 }
 
 .t-input-container > label,
@@ -83,11 +83,12 @@ label.t-error{
 
 .t-list-container {
     position: fixed;
-    top: 50px;
+    top: 0;
     right: 0;
     width: 30%;
     height: 100%;
     box-sizing: border-box;
+    overflow: scroll;
 }
 
 .t-list-inst strong{
@@ -200,14 +201,12 @@ body.modalOpen .t-modal-shade{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.75);
-    z-index: 51;
 }
 
 .t-modal-shade .t-modal-close{
     position: absolute;
     top: 20px;
     right: 24px;
-    z-index: 60;
     font-size: 20px;
     font-weight: bold;
     color: #000000;
@@ -240,11 +239,5 @@ body.modalOpen .t-modal-shade{
 
     .t-tile-container {
         width: 60%;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .container {
-        padding: 0 16px;
     }
 }

@@ -208,17 +208,12 @@
             this.body = document.querySelector('body');
             this.modalShade = document.createElement('div');
             this.modalImage = document.createElement('img')
-            const modalClose = document.createElement('button');
             // class and attribute assignment
             this.modalShade.classList.add('t-modal-shade');
             this.modalShade.addEventListener('click', modalView.closeModal)
-            modalClose.classList.add('t-modal-close');
-            modalClose.textContent = "X"
-            modalClose.addEventListener('click', modalView.closeModal)
             this.modalImage.classList.add('t-modal-image');
             // Append elements to the DOM
             this.body.appendChild(this.modalShade);
-            this.modalShade.appendChild(modalClose);
             this.modalShade.appendChild(this.modalImage);
         },
         renderModal: function () {
