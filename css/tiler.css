@@ -4,13 +4,19 @@ html {
 }
 
 .t-container {
-    margin-top: 50px;
-    padding: 0 20px;
+    position: relative;
     width: 100%;
     height: 100%;
-    z-index: 50;
-    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
+    background: #ffffff;
+    margin-top: 10px;
+    padding: 0 20px;
+    z-index: 10;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.t-app-title{
+    margin: 0;
 }
 
 .t-container *:focus {
@@ -43,16 +49,17 @@ html {
     position: fixed;
     background-color: #27290B;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 30px;
     top: 5px;
     right: -65px;
     margin: 0;
     transition: right 1s;
     text-align: left;
     padding-left: 20px;
+    z-index: 11;
 }
 
 .t-container button.close:hover {
@@ -83,11 +90,17 @@ label.t-error{
 
 .t-list-container {
     position: fixed;
-    top: 50px;
+    top: 0;
     right: 0;
     width: 30%;
     height: 100%;
     box-sizing: border-box;
+    overflow: scroll;
+}
+
+.t-list-container .t-return{
+    background:#e4f042;
+    padding: 0 4px;
 }
 
 .t-list-inst strong{
@@ -131,6 +144,8 @@ label.t-error{
     background: linear-gradient(to right, #e4f042 50%, #ffffff 50%);
     background-size: 200% 100%;
     background-position:right bottom;
+    align-items: center;
+    line-height: 1;
 }
 
 .t-list-item:hover{
@@ -142,8 +157,8 @@ label.t-error{
     margin-right: 5px;
 }
 
-.t-list-item input[type="input"] {
-    width: 500px;
+.t-list-item input[type="text"] {
+    width: 90%;
 }
 
 .t-list button:first-of-type{
@@ -179,6 +194,10 @@ label.t-error{
     opacity: 0;
 }
 
+.t-remove{
+    display: none;
+}
+
 .t-tile.t-hide:hover {
     opacity: 0;
 }
@@ -200,28 +219,7 @@ body.modalOpen .t-modal-shade{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.75);
-    z-index: 51;
-}
-
-.t-modal-shade .t-modal-close{
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    z-index: 60;
-    font-size: 20px;
-    font-weight: bold;
-    color: #000000;
-    background: #e4f042;
-    border: none;
-    width: 100px;
-    height: 40px;
-    transition: .7s;
-}
-
-.t-modal-shade .t-modal-close:hover{
-    color: #e4f042;
-    background: #000000;
-    transform: scale(1.1);
+    z-index: 12;
 }
 
 .t-modal-image{
@@ -230,7 +228,8 @@ body.modalOpen .t-modal-shade{
     top: 50%;
     transform: translateY(-50%);
     margin: 0 auto;
-    max-height: 80%;
+    max-width: 98%;
+    max-height: 90%;
 }
 
 @media screen and (max-width: 1450px) {
@@ -240,11 +239,5 @@ body.modalOpen .t-modal-shade{
 
     .t-tile-container {
         width: 60%;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .container {
-        padding: 0 16px;
     }
 }

@@ -50,8 +50,7 @@
             this.label = document.createElement('label');
             var appTitle = document.createElement('h1'),
                 appPurpose = document.createElement('p'),
-                entryBtn = document.createElement('button'),
-                closeBtn = document.createElement('button');
+                entryBtn = document.createElement('button')
             // class and attribute assignment
             this.pageContainer.classList.add('t-container');
             this.inputContainer.classList.add('t-input-container');
@@ -75,13 +74,9 @@
                 imageTileView.init();
                 modalView.initModal();
             });
-            closeBtn.classList.add('close');
-            closeBtn.textContent = "Close";
-            closeBtn.addEventListener('click', entryView.closeWindow)
             // Append elements to the DOM
             document.querySelector('body').appendChild(this.pageContainer);
             this.pageContainer.appendChild(this.inputContainer);
-            this.pageContainer.appendChild(closeBtn);
             this.inputContainer.appendChild(appTitle);
             this.inputContainer.appendChild(appPurpose);
             this.inputContainer.appendChild(this.label);
@@ -93,7 +88,6 @@
             this.label.classList.add('t-error')
         },
         remove: function () {
-            // entryView.inputContainer.classList.add('hide');
             entryView.inputContainer.remove();
         },
         reset: function () {
@@ -102,9 +96,6 @@
             imageTileView.tileContainer.remove();
             broker.clearData();
             entryView.init();
-        },
-        closeWindow: function () {
-            entryView.pageContainer.remove();
         }
     }
 
@@ -118,8 +109,8 @@
             // class assignment assignment
             this.listContainer.classList.add('t-list-container');
             listInstruction.classList.add('t-list-inst');
-            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span> <span class="three">- See a typo that needs correction, update the value of the url string and select the 'Update Images' button.</span><span class="four">- Select an image tile to view a larger version of the imagery</span> `;
-            urlCount.textContent = "Returned " + broker.retreiveData().length + " Images";
+            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span><span class="four">-Tile selection will open a modal with larger image for better view</span> `;
+            urlCount.innerHTML = "Returned " + "<span class='t-return'>" + broker.retreiveData().length + "</span>" + " Images";
             this.urlList.classList.add('t-list');
             // Append elements to the DOM
             entryView.pageContainer.appendChild(this.listContainer);
@@ -136,6 +127,7 @@
                 var listItemCheck = document.createElement('input');
                 var listItemURL = document.createElement('input');
                 // class and attribute assignment
+                listItem.textContent = (img.id) + 1 + '.';
                 listItem.classList.add('t-list-item');
                 listItem.setAttribute('data-id', img.id)
                 listItemCheck.setAttribute('type', 'checkbox');
@@ -144,7 +136,7 @@
                         broker.updateVisibility(imgCopy.id)
                     }
                 }(img))
-                listItemURL.setAttribute('type', 'input');
+                listItemURL.setAttribute('type', 'text');
                 listItemURL.value = img.img.toString();
                 // List Item Append elements to the DOM
                 listView.urlList.appendChild(listItem);
@@ -152,16 +144,12 @@
                 listItem.appendChild(listItemURL);
             })
             // creation of view elements
-            var updateBtn = document.createElement('button');
             var resetBtn = document.createElement('button');
             // class and attribute assignment
-            updateBtn.classList.add('update-list');
-            updateBtn.textContent = "Update Imgs";
             resetBtn.classList.add('t-reset');
             resetBtn.textContent = "reset";
             resetBtn.addEventListener('click', entryView.reset);
             // Append elements to the DOM
-            listView.urlList.appendChild(updateBtn);
             listView.urlList.appendChild(resetBtn);
         }
     }
@@ -200,6 +188,13 @@
         render: function (target) {
             const targetTile = document.querySelector('.t-tile[data-id="' + target + '"]')
             targetTile.classList.toggle('t-hide');
+            if (targetTile.classList.contains('t-hide')) {
+                setTimeout(function () {
+                    targetTile.classList.add('t-remove')
+                }, 200)
+            } else {
+                targetTile.classList.remove('t-remove')
+            }
         }
     }
     var modalView = {
@@ -208,17 +203,12 @@
             this.body = document.querySelector('body');
             this.modalShade = document.createElement('div');
             this.modalImage = document.createElement('img')
-            const modalClose = document.createElement('button');
             // class and attribute assignment
             this.modalShade.classList.add('t-modal-shade');
             this.modalShade.addEventListener('click', modalView.closeModal)
-            modalClose.classList.add('t-modal-close');
-            modalClose.textContent = "X"
-            modalClose.addEventListener('click', modalView.closeModal)
             this.modalImage.classList.add('t-modal-image');
             // Append elements to the DOM
             this.body.appendChild(this.modalShade);
-            this.modalShade.appendChild(modalClose);
             this.modalShade.appendChild(this.modalImage);
         },
         renderModal: function () {
@@ -233,3 +223,4 @@
     }
     entryView.init();
 }())
+
