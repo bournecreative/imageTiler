@@ -1,7 +1,8 @@
 # image Tiler
 
 The image tiler will take a group of text, parse out the valid URLs, list out the urls and tile them in grid pattern for easy viewing.
-![screen capture of list and tiled images](assets/image-tiler-grid.png =400px)
+![screen capture of list and tiled images](assets/image-tiler-grid.png width="400")
+
 
 ## Features
 
@@ -21,18 +22,20 @@ I also wanted to focus on writing code that separated concerns for better code o
 ### Directions
 
 Form entry
-![screen capture of form entry](assets/image-tiler-entry.png =500px)
+![screen capture of form entry](assets/image-tiler-entry.png width="500")
 
 If form is submitted with no information or the information submitted does not return any valid URLs, error field is displayed.
-![screen capture of form entry with error](assets/image-tiler-error.png =500px)
+![screen capture of form entry with error](assets/image-tiler-error.png width="500")
 
 Valid image url list is displayed on the right and corresponding images are tiled on the left of view.
-![screen capture of list and tiled images](assets/image-tiler-grid.png =500px)
+![screen capture of list and tiled images](assets/image-tiler-grid.png width="500")
 
 Checked images will fadeout from image tile grid. Unselecting the checkbox will display the imagery again.
-![screen capture of hiding images](assets/hidden-image-tiler.png =500px)
+![screen capture of hiding images](assets/hidden-image-tiler.png width="500")
 
 Selecting an image from the image grid will open a modal with the image displayed in larger format.
-![screen capture of image modal](assets/image-tiler-modal.png =500px)
+![screen capture of image modal](assets/image-tiler-modal.png width="500")
+
+
 
 
