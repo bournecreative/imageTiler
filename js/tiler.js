@@ -50,8 +50,7 @@
             this.label = document.createElement('label');
             var appTitle = document.createElement('h1'),
                 appPurpose = document.createElement('p'),
-                entryBtn = document.createElement('button'),
-                closeBtn = document.createElement('button');
+                entryBtn = document.createElement('button')
             // class and attribute assignment
             this.pageContainer.classList.add('t-container');
             this.inputContainer.classList.add('t-input-container');
@@ -75,13 +74,9 @@
                 imageTileView.init();
                 modalView.initModal();
             });
-            closeBtn.classList.add('close');
-            closeBtn.textContent = "Close";
-            closeBtn.addEventListener('click', entryView.closeWindow)
             // Append elements to the DOM
             document.querySelector('body').appendChild(this.pageContainer);
             this.pageContainer.appendChild(this.inputContainer);
-            this.pageContainer.appendChild(closeBtn);
             this.inputContainer.appendChild(appTitle);
             this.inputContainer.appendChild(appPurpose);
             this.inputContainer.appendChild(this.label);
@@ -101,9 +96,6 @@
             imageTileView.tileContainer.remove();
             broker.clearData();
             entryView.init();
-        },
-        closeWindow: function () {
-            entryView.pageContainer.remove();
         }
     }
 
