@@ -4,13 +4,15 @@ html {
 }
 
 .t-container {
-    margin-top: 50px;
-    padding: 0 20px;
+    position: relative;
     width: 100%;
     height: 100%;
-    z-index: 20;
-    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
+    background: #ffffff;
+    margin-top: 50px;
+    padding: 0 20px;
+    z-index: 10;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .t-container *:focus {
@@ -53,7 +55,7 @@ html {
     transition: right 1s;
     text-align: left;
     padding-left: 20px;
-    z-index: 1;
+    z-index: 11;
 }
 
 .t-container button.close:hover {
@@ -213,7 +215,7 @@ body.modalOpen .t-modal-shade{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.75);
-    z-index: 1;
+    z-index: 12;
 }
 
 .t-modal-image{

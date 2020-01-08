@@ -44,7 +44,6 @@
     var entryView = {
         init: function () {
             // creation of view elements
-            this.tileStyles = document.createElement('style');
             this.pageContainer = document.createElement('div');
             this.inputContainer = document.createElement('div');
             this.urlInput = document.createElement('textarea');
@@ -54,9 +53,6 @@
                 entryBtn = document.createElement('button'),
                 closeBtn = document.createElement('button');
             // class and attribute assignment
-            this.tileStyles.classList.add('tile-styles');
-            this.tileStyles.setAttribute('ref', 'stylesheet');
-            this.tileStyles.innerHTML = "body,html{margin:0}.t-container{margin-top:50px;padding:0 20px;width:100%;height:100%;z-index:20;font-family:Montserrat,sans-serif;box-sizing:border-box}.t-container :focus{outline:#000 dashed 1px;outline-offset:2px}.t-container textarea{width:40%;height:300px}.t-container button{background-color:#27290b;color:#fff;width:120px;height:40px;border:none;margin-top:16px;transition:all .2s}.t-container button:hover{background-color:#e4f042;color:#27290b;transform:scale(1.05)}.t-container button.close{position:fixed;background-color:#27290b;color:#fff;font-size:16px;font-weight:700;width:90px;height:30px;top:5px;right:-65px;margin:0;transition:right 1s;text-align:left;padding-left:20px;z-index:1}.t-container button.close:hover{background-color:#e4f042;color:#27290b;right:0}.t-input-container>label,button{display:block;margin-bottom:16px}.t-input-container>label{max-width:600px;transition:all 1s ease;background:linear-gradient(to right,#ee7575 50%,#fff 50%);background-size:200% 100%;background-position:right bottom;padding:7px 0}label.t-error{background-position:left bottom;color:#971a03}.t-list-container{position:fixed;top:0;right:0;width:30%;height:100%;box-sizing:border-box;overflow:scroll}.t-list-container .t-return{background:#e4f042;padding:0 4px}.t-list-inst strong{font-size:24px}.t-list-inst{margin-top:0;margin-bottom:16px;padding-left:10px;font-size:16px;line-height:1.5}.t-list-inst span{display:block;transition:all 1s ease;background:linear-gradient(to right,#e4f042 50%,#fff 50%);background-size:200% 100%;background-position:right bottom}.t-list-inst span.four:hover,.t-list-inst span.one:hover,.t-list-inst span.three:hover,.t-list-inst span.two:hover{background-position:left bottom}.t-list{font-size:12px;list-style-type:none;padding:0;margin:0}.t-list-item{display:flex;padding:4px 0;transition:all 1s ease;background:linear-gradient(to right,#e4f042 50%,#fff 50%);background-size:200% 100%;background-position:right bottom;align-items:center;line-height:1}.t-list-item:hover{background-position:left bottom}.t-list-item input[type=checkbox]{margin-right:5px}.t-list-item input[type=text]{width:90%}.t-list button:first-of-type{margin-right:16px}.t-list-container button{display:inline-block}.t-tile-container{width:70%;box-sizing:border-box}.t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-gap:0 10px;grid-auto-rows:10px}.t-grid img{width:250px}.t-tile{opacity:.5;transition:ease .3s}.t-tile.t-hide{opacity:0}.t-remove{display:none}.t-tile.t-hide:hover{opacity:0}.t-tile:hover{opacity:1;transform:scale(1.05)}body .t-modal-shade{display:none}body.modalOpen .t-modal-shade{display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:1}.t-modal-image{display:block;position:relative;top:50%;transform:translateY(-50%);margin:0 auto;max-width:98%;max-height:90%}@media screen and (max-width:1450px){.t-list-container{width:40%}.t-tile-container{width:60%}}";
             this.pageContainer.classList.add('t-container');
             this.inputContainer.classList.add('t-input-container');
             this.urlInput.setAttribute('id', 's7-urls');
@@ -83,7 +79,6 @@
             closeBtn.textContent = "Close";
             closeBtn.addEventListener('click', entryView.closeWindow)
             // Append elements to the DOM
-            document.head.appendChild(this.tileStyles);
             document.querySelector('body').appendChild(this.pageContainer);
             this.pageContainer.appendChild(this.inputContainer);
             this.pageContainer.appendChild(closeBtn);
@@ -109,8 +104,6 @@
         },
         closeWindow: function () {
             entryView.pageContainer.remove();
-            entryView.tileStyles
-            document.head.removeChild(entryView.tileStyles)
         }
     }
 
