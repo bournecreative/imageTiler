@@ -1,11 +1,12 @@
-
+body{
+    background: #181818;
+}
 /* page wrapper  */
 .t-page-wrapper {
     position: relative;
     width: 100%;
     height: 100vh;
     box-sizing: border-box;
-    background: #181818;
     padding: 20px;
     font-family: 'Montserrat', sans-serif;
 }
@@ -33,6 +34,13 @@
     transform: scale(1.05);
 }
 
+.t-highlight{
+    transition:all 1s ease;
+    background: linear-gradient(to right, #e80a89 50%, #181818 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+}
+
 /* input view */
 .t-input-container{
     display: flex;
@@ -44,6 +52,18 @@
     margin-top: 16px;
     margin-bottom: 0;
     font-size: 32px;
+    color: #ffffff;
+}
+
+.t-input-container > label{
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding: 7px;
+    color: #ffffff;
+}
+
+.t-input-container label.t-error{
+    background-position:left bottom;
     color: #ffffff;
 }
 
@@ -62,25 +82,9 @@
     background: #222;
     border: 1px solid #ccc;
     font-size: 12px;
-
 }
 
-.t-input-container > label{
-    transition:all 1s ease;
-    background: linear-gradient(to right, #e80a89 50%, #181818 50%);
-    background-size: 200% 100%;
-    background-position:right bottom;
-    font-size: 14px;
-    margin-bottom: 12px;
-    padding: 7px;
-    color: #ffffff;
-}
-
-label.t-error{
-    background-position:left bottom;
-    color: #ffffff;
-}
-
+/* list view */
 .t-list-container {
     position: fixed;
     top: 0;
@@ -88,43 +92,35 @@ label.t-error{
     width: 30%;
     height: 100%;
     box-sizing: border-box;
-    overflow: scroll;
-}
-
-.t-list-container .t-return{
-    background:#e4f042;
-    padding: 0 4px;
+    color: #ffffff;
+    overflow-y: scroll;
 }
 
 .t-list-inst strong{
-    font-size: 24px;
+    font-size: 32px;
 }
 
 .t-list-inst{
     margin-top: 0;
     margin-bottom: 16px;
-    padding-left: 10px;
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 14px;
 }
 
 .t-list-inst span{
     display: block;
-    transition:all 1s ease;
-    background: linear-gradient(to right, #e4f042 50%, #ffffff 50%);
-    background-size: 200% 100%;
-    background-position:right bottom;
+    line-height: 1.7;
 }
 
-.t-list-inst span.one:hover,
-.t-list-inst span.two:hover,
-.t-list-inst span.three:hover,
-.t-list-inst span.four:hover{
+.t-list-container .t-return{
+    background:#e80a89;
+    padding: 0 4px;
+}
+
+.t-list-inst span:hover{
     background-position:left bottom;
 }
 
 .t-list {
-    font-size: 12px;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -132,34 +128,21 @@ label.t-error{
 
 .t-list-item {
     display: flex;
-    padding: 4px 0;
-    transition:all 1s ease;
-    background: linear-gradient(to right, #e4f042 50%, #ffffff 50%);
-    background-size: 200% 100%;
-    background-position:right bottom;
+    padding: 4px 5px 4px 0;
     align-items: center;
-    line-height: 1;
+    justify-content: flex-end;
 }
 
 .t-list-item:hover{
     background-position:left bottom;
 }
 
-
 .t-list-item input[type="checkbox"] {
-    margin-right: 5px;
+    margin: 0 3px;
 }
 
 .t-list-item input[type="text"] {
     width: 90%;
-}
-
-.t-list button:first-of-type{
-    margin-right: 16px;
-}
-
-.t-list-container button{
-    display: inline-block;
 }
 
 .t-tile-container {
@@ -211,8 +194,8 @@ body.modalOpen .t-modal-shade{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.75);
-    z-index: 12;
+    background: rgba(34,34,34,.75);
+    z-index: 10;
 }
 
 .t-modal-image{

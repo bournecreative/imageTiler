@@ -60,6 +60,7 @@
             appTitle.textContent = "Image Tiler";
             appPurpose.classList.add('t-purpose-desc');
             appPurpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
+            this.label.classList.add('t-highlight');
             this.label.setAttribute('for', 's7-urls');
             this.label.textContent = "Paste image URLs below";
             entryBtn.classList.add('btn-submit');
@@ -110,7 +111,7 @@
             // class assignment assignment
             this.listContainer.classList.add('t-list-container');
             listInstruction.classList.add('t-list-inst');
-            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span><span class="four">-Tile selection will open a modal with larger image for better view</span> `;
+            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one t-highlight">All valid URL strings have been parsed and are listed below.</span> <span class="two t-highlight">- Check the checkbox to hide an image.</span><span class="four t-highlight">-Tile selection will open a modal with larger image for better view</span> `;
             urlCount.innerHTML = "Returned " + "<span class='t-return'>" + broker.retreiveData().length + "</span>" + " Images";
             this.urlList.classList.add('t-list');
             // Append elements to the DOM
@@ -129,7 +130,7 @@
                 var listItemURL = document.createElement('input');
                 // class and attribute assignment
                 listItem.textContent = (img.id) + 1 + '.';
-                listItem.classList.add('t-list-item');
+                listItem.classList.add('t-list-item', 't-highlight');
                 listItem.setAttribute('data-id', img.id)
                 listItemCheck.setAttribute('type', 'checkbox');
                 listItemCheck.addEventListener('click', function (imgCopy) {
