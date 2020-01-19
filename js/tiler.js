@@ -52,9 +52,10 @@
                 appPurpose = document.createElement('p'),
                 entryBtn = document.createElement('button')
             // class and attribute assignment
-            this.pageContainer.classList.add('t-container');
+            this.pageContainer.classList.add('t-page-wrapper');
             this.inputContainer.classList.add('t-input-container');
             this.urlInput.setAttribute('id', 's7-urls');
+            this.urlInput.setAttribute('placeholder', 'Enter s7 image info from Zeplin here!');
             appTitle.classList.add('t-app-title')
             appTitle.textContent = "Image Tiler";
             appPurpose.classList.add('t-purpose-desc');

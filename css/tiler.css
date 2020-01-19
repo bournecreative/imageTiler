@@ -1,91 +1,84 @@
-body,
-html {
-    margin: 0;
-}
 
-.t-container {
+/* page wrapper  */
+.t-page-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     box-sizing: border-box;
-    background: #ffffff;
-    margin-top: 10px;
-    padding: 0 20px;
-    z-index: 10;
+    background: #181818;
+    padding: 20px;
     font-family: 'Montserrat', sans-serif;
 }
 
-.t-app-title{
-    margin: 0;
+.t-page-wrapper *:focus {
+    outline: #ffffff dashed 1px;
+    outline-offset: 3px;
 }
 
-.t-container *:focus {
-    outline: black dashed 1px;
-    outline-offset: 2px;
-}
+/* global */
 
-.t-container textarea {
-    width: 40%;
-    height: 300px;
-}
-
-.t-container button{
-    background-color: #27290B;
+.t-page-wrapper button{
+    background-color: #e80a89;
     color: #ffffff;
     width: 120px;
-    height: 40px;
     border: none;
     margin-top: 16px;
     transition: all 0.2s;
+    font-size: 14px;
+    padding: 10px 5px;
 }
 
-.t-container button:hover {
-    background-color: #e4f042;
-    color: #27290B;
+.t-page-wrapper button:hover {
+    background-color: #19A7B5;
     transform: scale(1.05);
 }
 
-.t-container button.close {
-    position: fixed;
-    background-color: #27290B;
+/* input view */
+.t-input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.t-app-title{
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 32px;
     color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    width: 90px;
-    height: 30px;
-    top: 5px;
-    right: -65px;
-    margin: 0;
-    transition: right 1s;
-    text-align: left;
-    padding-left: 20px;
-    z-index: 11;
 }
 
-.t-container button.close:hover {
-    background-color: #e4f042;
-    color: #27290B;
-    right: 0px;
+.t-purpose-desc{
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #ffffff;
 }
 
-.t-input-container > label,
-button {
-    display: block;
-    margin-bottom: 16px;
+.t-input-container textarea {
+    width: 400px;
+    height: 200px;
+    resize: none;
+    padding: 10px;
+    color: #ffffff;
+    background: #222;
+    border: 1px solid #ccc;
+    font-size: 12px;
+
 }
 
 .t-input-container > label{
-    max-width: 600px;
     transition:all 1s ease;
-    background: linear-gradient(to right, #ee7575 50%, #ffffff 50%);
+    background: linear-gradient(to right, #e80a89 50%, #181818 50%);
     background-size: 200% 100%;
     background-position:right bottom;
-    padding: 7px 0;
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding: 7px;
+    color: #ffffff;
 }
 
 label.t-error{
     background-position:left bottom;
-    color: #971a03;
+    color: #ffffff;
 }
 
 .t-list-container {
