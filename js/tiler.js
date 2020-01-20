@@ -50,15 +50,30 @@
             this.label = document.createElement('label');
             var appTitle = document.createElement('h1'),
                 appPurpose = document.createElement('p'),
-                entryBtn = document.createElement('button')
+                entryBtn = document.createElement('button'),
+                toggleContainer = document.createElement('div'),
+                bgToggle = document.createElement('input'),
+                lightLabel = document.createElement('label'),
+                darkLabel = document.createElement('label');
             // class and attribute assignment
-            this.pageContainer.classList.add('t-container');
+            this.pageContainer.classList.add('t-page-wrapper');
             this.inputContainer.classList.add('t-input-container');
             this.urlInput.setAttribute('id', 's7-urls');
-            appTitle.classList.add('t-app-title')
+            this.urlInput.setAttribute('placeholder', 'Enter s7 image info from Zeplin here!');
+            toggleContainer.classList.add('t-bgColor-wrapper');
+            bgToggle.setAttribute('type', 'checkbox');
+            bgToggle.setAttribute('id', 'bgColor');
+            lightLabel.setAttribute('for', 'bgColor');
+            lightLabel.classList.add('t-bgColor-light');
+            darkLabel.setAttribute('for', 'bgColor');
+            darkLabel.classList.add('t-bgColor-dark');
+            lightLabel.textContent = "light"
+            darkLabel.textContent = "dark"
+            appTitle.classList.add('t-app-title');
             appTitle.textContent = "Image Tiler";
             appPurpose.classList.add('t-purpose-desc');
             appPurpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
+            this.label.classList.add('t-highlight');
             this.label.setAttribute('for', 's7-urls');
             this.label.textContent = "Paste image URLs below";
             entryBtn.classList.add('btn-submit');
@@ -74,10 +89,18 @@
                 imageTileView.init();
                 modalView.initModal();
             });
+            bgToggle.addEventListener('click', function () {
+                var body = document.querySelector('body')
+                body.classList.toggle('light')
+            })
             // Append elements to the DOM
             document.querySelector('body').appendChild(this.pageContainer);
             this.pageContainer.appendChild(this.inputContainer);
             this.inputContainer.appendChild(appTitle);
+            this.inputContainer.appendChild(toggleContainer);
+            toggleContainer.appendChild(darkLabel);
+            toggleContainer.appendChild(bgToggle);
+            toggleContainer.appendChild(lightLabel);
             this.inputContainer.appendChild(appPurpose);
             this.inputContainer.appendChild(this.label);
             this.inputContainer.appendChild(this.urlInput);
@@ -109,7 +132,7 @@
             // class assignment assignment
             this.listContainer.classList.add('t-list-container');
             listInstruction.classList.add('t-list-inst');
-            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one">All valid URL strings have been parsed and are listed below.</span> <span class="two">- Check the checkbox to hide an image.</span><span class="four">-Tile selection will open a modal with larger image for better view</span> `;
+            listInstruction.innerHTML = `<strong>Instructions</strong> <br> <span class="one t-highlight">All valid URL strings have been parsed and are listed below.</span> <span class="two t-highlight">- Check the checkbox to hide an image.</span><span class="four t-highlight">-Tile selection will open a modal with larger image for better view</span> `;
             urlCount.innerHTML = "Returned " + "<span class='t-return'>" + broker.retreiveData().length + "</span>" + " Images";
             this.urlList.classList.add('t-list');
             // Append elements to the DOM
@@ -128,7 +151,7 @@
                 var listItemURL = document.createElement('input');
                 // class and attribute assignment
                 listItem.textContent = (img.id) + 1 + '.';
-                listItem.classList.add('t-list-item');
+                listItem.classList.add('t-list-item', 't-highlight');
                 listItem.setAttribute('data-id', img.id)
                 listItemCheck.setAttribute('type', 'checkbox');
                 listItemCheck.addEventListener('click', function (imgCopy) {
