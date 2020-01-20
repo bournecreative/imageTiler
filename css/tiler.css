@@ -1,6 +1,11 @@
 body{
     background: #181818;
 }
+
+body.light{
+    background: #ffffff;
+}
+
 /* page wrapper  */
 .t-page-wrapper {
     position: relative;
@@ -16,6 +21,9 @@ body{
     outline-offset: 3px;
 }
 
+body.light .t-page-wrapper *:focus {
+    outline: #222 dashed 1px;
+}
 /* global */
 
 .t-page-wrapper button{
@@ -41,6 +49,13 @@ body{
     background-position:right bottom;
 }
 
+body.light .t-highlight{
+    transition:all 1s ease;
+    background: linear-gradient(to right, #e80a89 50%, #ffffff 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+}
+
 /* input view */
 .t-input-container{
     display: flex;
@@ -55,11 +70,85 @@ body{
     color: #ffffff;
 }
 
+body.light .t-app-title{
+    color: #222;
+}
+
+/* toggle button */
+
+#bgColor{
+    height: 30px;
+    width: 70px;
+    vertical-align: middle;
+    background-color: #464646;
+    border-radius: 15px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+body.light #bgColor{
+    background-color: #ccc;
+}
+
+#bgColor[type="checkbox"]:before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e80a89;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    transform: translateX(-20px);
+    transition: 0.7s;
+  }
+
+  #bgColor[type="checkbox"]:checked:before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e80a89;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    transform: translateX(20px);
+    transition: 0.7s;
+  }
+
+  .t-bgColor-wrapper{
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #ffffff;
+      padding: 10px;
+  }
+
+  .t-bgColor-light{
+      margin-left: 10px;
+  }
+
+  .t-bgColor-dark{
+    margin-right: 10px;
+  }
+
+/*  input instruction */
+
 .t-input-container > label{
     font-size: 14px;
     margin-bottom: 12px;
     padding: 7px;
     color: #ffffff;
+}
+
+body.light .t-input-container > label{
+    color: #222;
 }
 
 .t-input-container label.t-error{
@@ -73,6 +162,10 @@ body{
     color: #ffffff;
 }
 
+body.light .t-purpose-desc{
+    color: #222;
+}
+
 .t-input-container textarea {
     width: 400px;
     height: 200px;
@@ -82,6 +175,11 @@ body{
     background: #222;
     border: 1px solid #ccc;
     font-size: 12px;
+}
+
+body.light .t-input-container textarea {
+    background: #ffffff;
+    color: #222;
 }
 
 /* list view */
@@ -94,6 +192,10 @@ body{
     box-sizing: border-box;
     color: #ffffff;
     overflow-y: scroll;
+}
+
+body.light .t-list-container {
+    color: #222;
 }
 
 .t-list-inst strong{
@@ -133,7 +235,8 @@ body{
     justify-content: flex-end;
 }
 
-.t-list-item:hover{
+.t-list-item:hover,
+body.light .t-list-item:hover{
     background-position:left bottom;
 }
 

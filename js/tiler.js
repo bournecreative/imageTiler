@@ -50,13 +50,26 @@
             this.label = document.createElement('label');
             var appTitle = document.createElement('h1'),
                 appPurpose = document.createElement('p'),
-                entryBtn = document.createElement('button')
+                entryBtn = document.createElement('button'),
+                toggleContainer = document.createElement('div'),
+                bgToggle = document.createElement('input'),
+                lightLabel = document.createElement('label'),
+                darkLabel = document.createElement('label');
             // class and attribute assignment
             this.pageContainer.classList.add('t-page-wrapper');
             this.inputContainer.classList.add('t-input-container');
             this.urlInput.setAttribute('id', 's7-urls');
             this.urlInput.setAttribute('placeholder', 'Enter s7 image info from Zeplin here!');
-            appTitle.classList.add('t-app-title')
+            toggleContainer.classList.add('t-bgColor-wrapper');
+            bgToggle.setAttribute('type', 'checkbox');
+            bgToggle.setAttribute('id', 'bgColor');
+            lightLabel.setAttribute('for', 'bgColor');
+            lightLabel.classList.add('t-bgColor-light');
+            darkLabel.setAttribute('for', 'bgColor');
+            darkLabel.classList.add('t-bgColor-dark');
+            lightLabel.textContent = "light"
+            darkLabel.textContent = "dark"
+            appTitle.classList.add('t-app-title');
             appTitle.textContent = "Image Tiler";
             appPurpose.classList.add('t-purpose-desc');
             appPurpose.textContent = " 🕑 Quickly review CDN urls to ensure provided artwork 🎨 matches comps.";
@@ -76,10 +89,18 @@
                 imageTileView.init();
                 modalView.initModal();
             });
+            bgToggle.addEventListener('click', function () {
+                var body = document.querySelector('body')
+                body.classList.toggle('light')
+            })
             // Append elements to the DOM
             document.querySelector('body').appendChild(this.pageContainer);
             this.pageContainer.appendChild(this.inputContainer);
             this.inputContainer.appendChild(appTitle);
+            this.inputContainer.appendChild(toggleContainer);
+            toggleContainer.appendChild(darkLabel);
+            toggleContainer.appendChild(bgToggle);
+            toggleContainer.appendChild(lightLabel);
             this.inputContainer.appendChild(appPurpose);
             this.inputContainer.appendChild(this.label);
             this.inputContainer.appendChild(this.urlInput);
