@@ -262,10 +262,6 @@
         render: function () {
             setLaunch.tilerWindow.document.head.appendChild(this.mysheet);
             entryView.init()
-        },
-        remove: function () {
-            this.cssTarget = document.querySelector('.tilercss');
-            document.head.removeChild(this.cssTarget);
         }
     }
     setLaunch.init()
